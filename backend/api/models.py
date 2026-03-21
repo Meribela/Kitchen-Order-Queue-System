@@ -26,3 +26,11 @@ class OrderItem(models.Model):
     product = models.ForeignKey(Product, on_delete=models.PROTECT)
     quantity = models.PositiveIntegerField()
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)  # snapshot
+
+class Queue(models.Model):
+    ticket_number = models.IntegerField(unique=True)
+    name = models.CharField(max_length=120)
+    status = models.CharField(max_length=20, default='waiting')
+    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f"Queue #{self.ticket_number} - {self.name}"

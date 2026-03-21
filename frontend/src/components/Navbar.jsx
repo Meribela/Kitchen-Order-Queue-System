@@ -47,6 +47,16 @@ export default function Navbar() {
           >
             Orders
           </NavLink>
+
+        <NavLink
+                  to="/queues"
+                  className={({ isActive }) =>
+                    `${base} ${isActive ? active : idle}`
+                  }
+                >
+                  Queue
+                </NavLink>
+          
         </nav>
       </div>
     </header>

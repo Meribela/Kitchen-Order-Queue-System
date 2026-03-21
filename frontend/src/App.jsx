@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Customers from "./pages/Customers";
 import Products from "./pages/Products";
 import Orders from "./pages/Orders";
+import Queue from "./pages/Queue";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
             <Route path="/customers" element={<Customers />} />
             <Route path="/products" element={<Products />} />
             <Route path="/orders" element={<Orders />} />
+            <Route path="/queues" element={<Queue />} />
             <Route path="*" element={<Navigate to="/customers" replace />} />
           </Routes>
         </main>

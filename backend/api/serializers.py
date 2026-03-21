@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Customer, Product, Order, OrderItem
+from .models import Customer, Product, Order, OrderItem, Queue
 
 
 class CustomerSerializer(serializers.ModelSerializer):
@@ -49,3 +49,8 @@ class OrderSerializer(serializers.ModelSerializer):
                 unit_price=product.current_price,  # snapshot
             )
         return order
+
+class QueueSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Queue
+        fields = '__all__'
