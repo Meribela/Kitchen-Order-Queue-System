@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 from rest_framework import viewsets, status
+=======
+from rest_framework import status, viewsets
+>>>>>>> Stashed changes
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from .models import Customer, Product, Order, Queue
@@ -45,3 +49,23 @@ class QueueViewSet(viewsets.ModelViewSet):
         request.data["status"] = "waiting"
 
         return super().create(request, *args, **kwargs)
+
+    @action(detail=False, methods=["post"], url_path="next")
+    def next_ticket(self, request):
+        next_in_line = (
+            Queue.objects.filter(status="waiting")
+            .order_by("ticket_number")
+            .first()
+        )
+        if not next_in_line:
+            return Response(
+                {"detail": "No waiting tickets."},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        next_in_line.status = "serving"
+        next_in_line.save(update_fields=["status"])
+        return Response(
+            {"ticket": next_in_line.ticket_number, "id": next_in_line.id},
+            status=status.HTTP_200_OK,
+        )
