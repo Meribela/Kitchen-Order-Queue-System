@@ -145,7 +145,7 @@ npm run dev
 
 ## 👨‍💻 Authors / Collaborators
 
-* Dayak, Cyril Inego
+* Cyril Inego Dayak
 * Kyle Angela F. Jumilla
 * Merryl Gabrielle Louise Ignacio
 * Dominic O. Gabac
