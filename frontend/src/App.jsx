@@ -17,7 +17,7 @@ export default function App() {
             <Route path="/customers" element={<Customers />} />
             <Route path="/products" element={<Products />} />
             <Route path="/orders" element={<Orders />} />
-            <Route path="/track-order" element={<TrackOrder />} />
+            <Route path="/track-order" element={<TrackOrders />} />
             <Route path="/queues" element={<Queue />} />
             <Route path="*" element={<Navigate to="/customers" replace />} />
           </Routes>
