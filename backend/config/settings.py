@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-change-this-key'
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
 
 
 # APPLICATIONS
@@ -32,6 +32,7 @@ INSTALLED_APPS = [
 
     # local apps
     'api',
+    'user',
 ]
 
 
@@ -75,9 +76,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'ordering_dbb',
+        'NAME': 'ordering_db',
         'USER': 'postgres',
-        'PASSWORD': 'Cyrilgwapo12',
+        'PASSWORD': 'Cyrilgwapo123',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -129,5 +130,21 @@ CORS_ALLOWED_ORIGINS = [
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     ]
+}
+
+# AUTH USER MODEL
+AUTH_USER_MODEL = 'user.User'
+
+# JWT SETTINGS
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
 }
