@@ -1,10 +1,27 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { authAPI } from "../api/api";
 
 export default function Navbar() {
   const base =
     "px-4 py-2 rounded-xl text-sm font-medium border transition";
   const active = "bg-black text-white border-black";
   const idle = "bg-white border-gray-200 hover:bg-gray-50";
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    setIsLoggingOut(true);
+    try {
+      await authAPI.logout();
+    } catch (err) {
+      console.error("Logout error:", err);
+    } finally {
+      localStorage.removeItem("access_token");
+      localStorage.removeItem("refresh_token");
+      navigate("/login");
+    }
+  };
 
   return (
     <header className="sticky top-0 z-10 border-b bg-white/80 backdrop-blur">
@@ -65,6 +82,23 @@ export default function Navbar() {
           >
             Queue
           </NavLink>
+
+          <NavLink
+            to="/profile"
+            className={({ isActive }) =>
+              `${base} ${isActive ? active : idle}`
+            }
+          >
+            Profile
+          </NavLink>
+
+          <button
+            onClick={handleLogout}
+            disabled={isLoggingOut}
+            className={`${base} bg-red-50 border-red-200 text-red-600 hover:bg-red-100 disabled:opacity-50`}
+          >
+            {isLoggingOut ? "..." : "Logout"}
+          </button>
         </nav>
       </div>
     </header>
