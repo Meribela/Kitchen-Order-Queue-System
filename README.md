@@ -6,7 +6,7 @@ A full-stack web application designed to manage food orders, organize kitchen wo
 
 ## 🧠 System Overview
 
-This system allows staff to create and manage orders while the kitchen processes them through a structured queue. Customers can track their orders in real time using an order number.
+This system allows staff to create and manage orders while the kitchen processes them through a structured queue. Customers can track their orders in real time using an order number..... 
 
 ---
 
